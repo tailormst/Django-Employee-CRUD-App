@@ -9,8 +9,8 @@ services:
     plan: free
     name: employeemanager
     runtime: python
-    buildCommand: "./build.sh"
-    startCommand: "python -m gunicorn employeemanager.asgi:application -k uvicorn.workers.UvicornWorker"    
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn employeemanager.asgi:application -k uvicorn.workers.UvicornWorker"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
