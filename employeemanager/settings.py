@@ -31,8 +31,6 @@ ALLOWED_HOSTS = [
     'employeemanager-t88s.onrender.com', 
 ]
 
-
-
 # Application definition
 
 INSTALLED_APPS = [
