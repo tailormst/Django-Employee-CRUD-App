@@ -7,6 +7,7 @@
         </div>
         <div class="card-body">
             <p class="lead">Are you sure you want to delete the employee "{{ employee.full_name }}"?</p>
+            <p><strong>Department:</strong> {{ employee.department.name }}</p>
             <form method="post">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger">Yes, Delete</button>

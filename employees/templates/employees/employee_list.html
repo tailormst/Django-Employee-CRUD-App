@@ -33,7 +33,7 @@
                                     <td>{{ employee.full_name }}</td>
                                     <td>{{ employee.email }}</td>
                                     <td>{{ employee.department.name }}</td>
-                                    <td>{{ employee.hire_date }}</td>
+                                    <td>{{ employee.hire_date|date:"M d, Y" }}</td>
                                     <td>
                                         {% if employee.is_active %}
                                             <span class="badge bg-success">Active</span>

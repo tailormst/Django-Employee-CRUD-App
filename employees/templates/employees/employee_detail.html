@@ -37,7 +37,7 @@
                         </tr>
                         <tr>
                             <th>Date of Birth:</th>
-                            <td>{{ employee.date_of_birth }}</td>
+                            <td>{{ employee.date_of_birth|date:"F j, Y" }}</td>
                         </tr>
                         <tr>
                             <th>Address:</th>
@@ -58,11 +58,11 @@
                         </tr>
                         <tr>
                             <th>Hire Date:</th>
-                            <td>{{ employee.hire_date }}</td>
+                            <td>{{ employee.hire_date|date:"F j, Y" }}</td>
                         </tr>
                         <tr>
                             <th>Salary:</th>
-                            <td>${{ employee.salary }}</td>
+                            <td>${{ employee.salary|floatformat:2 }}</td>
                         </tr>
                         <tr>
                             <th>Status:</th>

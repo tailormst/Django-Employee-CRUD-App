@@ -8,14 +8,14 @@
         <div class="card-body">
             <form method="post">
                 {% csrf_token %}
-                
+
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="{{ form.first_name.id_for_label }}" class="form-label">First Name</label>
                             {{ form.first_name.errors }}
                             <input type="text" name="{{ form.first_name.name }}" id="{{ form.first_name.id_for_label }}" 
-                                class="form-control" value="{{ form.first_name.value|default:'' }}" required>
+                                class="form-control" value="{{ form.first_name.value|default_if_none:'' }}" required>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -23,18 +23,18 @@
                             <label for="{{ form.last_name.id_for_label }}" class="form-label">Last Name</label>
                             {{ form.last_name.errors }}
                             <input type="text" name="{{ form.last_name.name }}" id="{{ form.last_name.id_for_label }}" 
-                                class="form-control" value="{{ form.last_name.value|default:'' }}" required>
+                                class="form-control" value="{{ form.last_name.value|default_if_none:'' }}" required>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
                             {{ form.email.errors }}
                             <input type="email" name="{{ form.email.name }}" id="{{ form.email.id_for_label }}" 
-                                class="form-control" value="{{ form.email.value|default:'' }}" required>
+                                class="form-control" value="{{ form.email.value|default_if_none:'' }}" required>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -42,11 +42,11 @@
                             <label for="{{ form.phone.id_for_label }}" class="form-label">Phone</label>
                             {{ form.phone.errors }}
                             <input type="text" name="{{ form.phone.name }}" id="{{ form.phone.id_for_label }}" 
-                                class="form-control" value="{{ form.phone.value|default:'' }}" required>
+                                class="form-control" value="{{ form.phone.value|default_if_none:'' }}" required>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="row mb-3">
                     <div class="col-md-4">
                         <div class="mb-3">
@@ -65,7 +65,7 @@
                             <label for="{{ form.date_of_birth.id_for_label }}" class="form-label">Date of Birth</label>
                             {{ form.date_of_birth.errors }}
                             <input type="date" name="{{ form.date_of_birth.name }}" id="{{ form.date_of_birth.id_for_label }}" 
-                                class="form-control" value="{{ form.date_of_birth.value|date:'Y-m-d'|default:'' }}" required>
+                                class="form-control" value="{{ form.date_of_birth.value|date:'Y-m-d'|default_if_none:'' }}" required>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -73,18 +73,18 @@
                             <label for="{{ form.hire_date.id_for_label }}" class="form-label">Hire Date</label>
                             {{ form.hire_date.errors }}
                             <input type="date" name="{{ form.hire_date.name }}" id="{{ form.hire_date.id_for_label }}" 
-                                class="form-control" value="{{ form.hire_date.value|date:'Y-m-d'|default:'' }}" required>
+                                class="form-control" value="{{ form.hire_date.value|date:'Y-m-d'|default_if_none:'' }}" required>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="{{ form.salary.id_for_label }}" class="form-label">Salary</label>
                             {{ form.salary.errors }}
                             <input type="number" step="0.01" name="{{ form.salary.name }}" id="{{ form.salary.id_for_label }}" 
-                                class="form-control" value="{{ form.salary.value|default:'' }}" required>
+                                class="form-control" value="{{ form.salary.value|default_if_none:'' }}" required>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -94,7 +94,7 @@
                             <select name="{{ form.department.name }}" id="{{ form.department.id_for_label }}" class="form-select" required>
                                 <option value="">Select Department</option>
                                 {% for department in form.department.field.queryset %}
-                                    <option value="{{ department.id }}" {% if form.department.value|stringformat:'i' == department.id|stringformat:'i' %}selected{% endif %}>
+                                    <option value="{{ department.id }}" {% if form.department.value|stringformat:"i" == department.id|stringformat:"i" %}selected{% endif %}>
                                         {{ department.name }} ({{ department.location }})
                                     </option>
                                 {% endfor %}
@@ -102,20 +102,20 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="mb-3">
                     <label for="{{ form.address.id_for_label }}" class="form-label">Address</label>
                     {{ form.address.errors }}
                     <textarea name="{{ form.address.name }}" id="{{ form.address.id_for_label }}" 
-                        class="form-control" rows="3" required>{{ form.address.value|default:'' }}</textarea>
+                        class="form-control" rows="3" required>{{ form.address.value|default_if_none:'' }}</textarea>
                 </div>
-                
+
                 <div class="mb-3 form-check">
                     <input type="checkbox" name="{{ form.is_active.name }}" id="{{ form.is_active.id_for_label }}" 
                         class="form-check-input" {% if form.is_active.value %}checked{% endif %}>
                     <label class="form-check-label" for="{{ form.is_active.id_for_label }}">Active</label>
                 </div>
-                
+
                 <div class="mt-4">
                     <button type="submit" class="btn btn-primary">Save</button>
                     <a href="{% url 'employee-list' %}" class="btn btn-secondary">Cancel</a>
